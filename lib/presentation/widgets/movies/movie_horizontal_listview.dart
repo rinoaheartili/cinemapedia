@@ -33,9 +33,10 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview>
     
     scrollController.addListener(() 
     {
-      if ( widget.loadNextPage == null ) return;
+      if(widget.loadNextPage == null) return;
 
-      if ( (scrollController.position.pixels + 200) >= scrollController.position.maxScrollExtent ) {
+      if((scrollController.position.pixels + 200) >= scrollController.position.maxScrollExtent) 
+      {
         widget.loadNextPage!();
       }
     });
@@ -90,7 +91,7 @@ class _Slide extends StatelessWidget
 
     return Container
     (
-      margin: const EdgeInsets.symmetric( horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: 
@@ -104,8 +105,10 @@ class _Slide extends StatelessWidget
                 movie.posterPath,
                 fit: BoxFit.cover,
                 width: 150,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if ( loadingProgress != null ) {
+                loadingBuilder: (context, child, loadingProgress) 
+                {
+                  if (loadingProgress != null) 
+                  {
                     return const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Center(child: CircularProgressIndicator(strokeWidth: 2 )),
@@ -133,11 +136,11 @@ class _Slide extends StatelessWidget
             width: 150,
             child: Row(
               children: [
-                Icon( Icons.star_half_outlined, color: Colors.yellow.shade800 ),
+                Icon( Icons.star_half_outlined, color: Colors.yellow.shade800),
                 const SizedBox( width: 3 ),
-                Text('${ movie.voteAverage }', style: textStyles.bodyMedium?.copyWith( color: Colors.yellow.shade800 )),
+                Text('${movie.voteAverage}', style: textStyles.bodyMedium?.copyWith(color: Colors.yellow.shade800)),
                 const Spacer(),
-                Text( HumanFormats.number(movie.popularity), style: textStyles.bodySmall ),
+                Text( HumanFormats.number(movie.popularity), style: textStyles.bodySmall),
               ],
             ),
           )
@@ -152,7 +155,10 @@ class _Title extends StatelessWidget
   final String? title;
   final String? subTitle;
 
-  const _Title({ this.title, this.subTitle});
+  const _Title({
+    this.title, 
+    this.subTitle
+  });
 
   @override
   Widget build(BuildContext context) 
@@ -161,14 +167,14 @@ class _Title extends StatelessWidget
 
     return Container
     (
-      padding: const EdgeInsets.only( top: 10),
+      padding: const EdgeInsets.only(top: 10),
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Row
       (
         children: 
         [  
-          if ( title != null )
-            Text(title!, style: titleStyle ),
+          if (title != null)
+            Text(title!, style: titleStyle),
           
           const Spacer(),
 
@@ -176,7 +182,7 @@ class _Title extends StatelessWidget
             FilledButton.tonal(
               style: const ButtonStyle( visualDensity: VisualDensity.compact ),
               onPressed: (){}, 
-              child: Text( subTitle! )
+              child: Text(subTitle!)
           )
         ],
       ),

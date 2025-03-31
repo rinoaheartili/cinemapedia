@@ -10,21 +10,24 @@ final nowPlayingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movi
   );
 });
 
-final popularMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+final popularMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) 
+{
   final fetchMoreMovies = ref.watch( movieRepositoryProvider ).getPopular;
   return MoviesNotifier(
     fetchMoreMovies: fetchMoreMovies
   );
 });
 
-final upcomingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+final upcomingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) 
+{
   final fetchMoreMovies = ref.watch( movieRepositoryProvider ).getUpcoming;
   return MoviesNotifier(
     fetchMoreMovies: fetchMoreMovies
   );
 });
 
-final topRatedMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+final topRatedMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) 
+{
   final fetchMoreMovies = ref.watch( movieRepositoryProvider ).getTopRated;
   return MoviesNotifier(
     fetchMoreMovies: fetchMoreMovies
@@ -45,7 +48,7 @@ class MoviesNotifier extends StateNotifier<List<Movie>>
 
   Future<void> loadNextPage() async
   {
-    if ( isLoading ) return;
+    if(isLoading) return;
     isLoading = true;
 
     currentPage++;

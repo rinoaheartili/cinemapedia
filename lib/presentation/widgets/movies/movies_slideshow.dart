@@ -6,7 +6,6 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 class MoviesSlideshow extends StatelessWidget 
 {  
   final List<Movie> movies;
-  
   const MoviesSlideshow
   ({
     super.key, 
@@ -44,7 +43,6 @@ class MoviesSlideshow extends StatelessWidget
 class _Slide extends StatelessWidget 
 {
   final Movie movie;
-
   const _Slide({required this.movie});
 
   @override
@@ -70,10 +68,12 @@ class _Slide extends StatelessWidget
           child: Image.network(
             movie.backdropPath,
             fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if ( loadingProgress != null ) {
+            loadingBuilder: (context, child, loadingProgress) 
+            {
+              if ( loadingProgress != null ) 
+              {
                 return const DecoratedBox(
-                  decoration: BoxDecoration( color: Colors.black12 )
+                  decoration: BoxDecoration(color: Colors.black12)
                 );
               }
               return FadeIn(child: child);
