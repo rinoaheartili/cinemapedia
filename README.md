@@ -44,6 +44,22 @@ This section is dedicated to the design of the movie screen individually, we wil
 
 This means that we have to rework a new entity, datasources, repositories and so on to keep responsibilities separate.
 
+## Specific Topics in Four Section
+
+This section aims to learn how to perform searches and work with SearchDelegate, specifically we will cover:
+
+ - SearchDelegate
+ - Datasources
+ - Repositories
+ - Searching against TheMovieDB
+ - Debouncer
+ - Streams
+ - Builders
+ - DRY
+ - Providers
+
+In this section, we will build a complete and robust search engine so that our users can search for their movies there and preserve previous searches to improve its performance.
+
 ## Dev
- 1. Copiar el .env.template y renombrarlo a .env
- 2. Cambiar las variables de entorno (The MovieDB)
+ 1. Copy the .env.template and rename it to .env
+ 2. Change the environment variables (The MovieDB)

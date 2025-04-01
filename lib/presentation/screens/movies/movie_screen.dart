@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
 
 import 'package:cinemapedia/domain/entities/movie.dart';
-
-import 'package:cinemapedia/presentation/providers/providers.dart';
+import 'package:cinemapedia/presentation/providers.dart';
 import 'package:cinemapedia/presentation/providers/movies/movie_info_provider.dart';
 
 
@@ -37,7 +36,7 @@ class MovieScreenState extends ConsumerState<MovieScreen>
     final Movie? movie = ref.watch( movieInfoProvider )[widget.movieId];
     if ( movie == null ) 
     {
-      return const Scaffold(body: Center( child: CircularProgressIndicator( strokeWidth: 2)));
+      return const Scaffold(body: Center( child: CircularProgressIndicator(strokeWidth: 2)));
     }
 
     return Scaffold(
@@ -107,8 +106,8 @@ class _MovieDetails extends StatelessWidget
               ...movie.genreIds.map((gender) => Container(
                 margin: const EdgeInsets.only( right: 10),
                 child: Chip(
-                  label: Text( gender ),
-                  shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
+                  label: Text(gender),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 ),
               ))
             ],
@@ -130,9 +129,9 @@ class _ActorsByMovie extends ConsumerWidget
   @override
   Widget build(BuildContext context, ref) 
   {
-    final actorsByMovie = ref.watch( actorsByMovieProvider );
+    final actorsByMovie = ref.watch(actorsByMovieProvider);
 
-    if ( actorsByMovie[movieId] == null ) 
+    if (actorsByMovie[movieId] == null) 
     {
       return const CircularProgressIndicator(strokeWidth: 2);
     }
@@ -168,10 +167,10 @@ class _ActorsByMovie extends ConsumerWidget
 
                 // Nombre
                 const SizedBox(height: 5,),
-                Text(actor.name, maxLines: 2 ),
+                Text(actor.name, maxLines: 2),
                 Text(actor.character ?? '', 
                   maxLines: 2,
-                  style: const TextStyle( fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis ),
+                  style: const TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
               ),
               ],
             ),
