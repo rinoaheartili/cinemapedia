@@ -15,7 +15,7 @@ class FullScreenLoader extends StatelessWidget
       'Esto está tardando más de lo esperado :(',
     ];
 
-    return Stream.periodic( const Duration(milliseconds: 1200), (step) {
+    return Stream.periodic(const Duration(milliseconds: 1200), (step) {
       return messages[step];
     }).take(messages.length);
   }
@@ -35,9 +35,9 @@ class FullScreenLoader extends StatelessWidget
           StreamBuilder(
             stream: getLoadingMessages(),
             builder: (context, snapshot) {
-              if ( !snapshot.hasData ) return const Text('Cargando...');
+              if (!snapshot.hasData) return const Text('Cargando...');
               
-              return Text( snapshot.data! );
+              return Text(snapshot.data!);
             },
           ),
         ],

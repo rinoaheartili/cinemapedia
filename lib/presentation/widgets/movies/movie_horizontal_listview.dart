@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/config/helpers/human_formats.dart';
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class MovieHorizontalListview extends StatefulWidget 
@@ -59,8 +59,8 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview>
       child: Column(
         children: 
         [
-          if ( widget.title != null || widget.subTitle != null )
-            _Title(title: widget.title, subTitle: widget.subTitle ),
+          if (widget.title != null || widget.subTitle != null)
+            _Title(title: widget.title, subTitle: widget.subTitle),
 
           Expanded
           (
@@ -83,48 +83,39 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview>
 class _Slide extends StatelessWidget 
 {
   final Movie movie;
-  const _Slide({ required this.movie });
+
+  const _Slide({required this.movie});
 
   @override
   Widget build(BuildContext context) 
   {
     final textStyles = Theme.of(context).textTheme;
 
-    return Container
-    (
+    return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: 
-        [  
+        children: [
+          
           //* Imagen
           SizedBox(
             width: 150,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                movie.posterPath,
-                fit: BoxFit.cover,
-                width: 150,
-                loadingBuilder: (context, child, loadingProgress) 
-                {
-                  if (loadingProgress != null) 
-                  {
-                    return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(child: CircularProgressIndicator(strokeWidth: 2 )),
-                    );
-                  }
-                  return GestureDetector(
-                    onTap: () => context.push('/movie/${movie.id}'),
-                    child: FadeIn(child: child),
-                  );
-                },
+              child: GestureDetector(
+                onTap: () => context.push('/home/0/movie/${ movie.id }'),
+                child: FadeInImage(
+                  height: 220,
+                  fit: BoxFit.cover,
+                  placeholder: const AssetImage('assets/loaders/bottle-loader.gif'), 
+                  image: NetworkImage(movie.posterPath)
+                ),
               ),
             ),
           ),
 
           const SizedBox(height: 5),
+
           //* Title
           SizedBox(
             width: 150,
@@ -136,18 +127,9 @@ class _Slide extends StatelessWidget
           ),
 
           //* Rating
-          SizedBox(
-            width: 150,
-            child: Row(
-              children: [
-                Icon( Icons.star_half_outlined, color: Colors.yellow.shade800),
-                const SizedBox( width: 3 ),
-                Text('${movie.voteAverage}', style: textStyles.bodyMedium?.copyWith(color: Colors.yellow.shade800)),
-                const Spacer(),
-                Text( HumanFormats.number(movie.popularity), style: textStyles.bodySmall),
-              ],
-            ),
-          )
+          MovieRating(
+            voteAverage: movie.voteAverage
+          ),
         ],
       ),
     );
@@ -177,14 +159,14 @@ class _Title extends StatelessWidget
       (
         children: 
         [  
-          if (title != null)
+          if(title != null)
             Text(title!, style: titleStyle),
           
           const Spacer(),
 
-          if ( subTitle != null )
+          if(subTitle != null)
             FilledButton.tonal(
-              style: const ButtonStyle( visualDensity: VisualDensity.compact ),
+              style: const ButtonStyle(visualDensity: VisualDensity.compact),
               onPressed: (){}, 
               child: Text(subTitle!)
           )

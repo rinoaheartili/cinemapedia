@@ -7,7 +7,7 @@ class MovieDetails
   final List<Genre> genres;
   final String homepage;
   final int id;
-  final String imdbId;
+  final String? imdbId;
   final String originalLanguage;
   final String originalTitle;
   final String overview;
@@ -54,8 +54,7 @@ class MovieDetails
     required this.voteCount,
   });
 
-  factory MovieDetails.fromJson(Map<String, dynamic> json) => 
-  MovieDetails(
+  factory MovieDetails.fromJson(Map<String, dynamic> json) => MovieDetails(
     adult: json["adult"],
     backdropPath: json["backdrop_path"] ?? '',
     belongsToCollection: json["belongs_to_collection"] == null ? null : BelongsToCollection.fromJson(json["belongs_to_collection"]),
@@ -119,7 +118,7 @@ class BelongsToCollection
   final String name;
   final String posterPath;
   final String backdropPath;
-
+  
   BelongsToCollection({
     required this.id,
     required this.name,
@@ -127,16 +126,14 @@ class BelongsToCollection
     required this.backdropPath,
   });
 
-  factory BelongsToCollection.fromJson(Map<String, dynamic> json) => 
-  BelongsToCollection(
+  factory BelongsToCollection.fromJson(Map<String, dynamic> json) => BelongsToCollection(
     id: json["id"],
     name: json["name"],
-    posterPath: json["poster_path"],
-    backdropPath: json["backdrop_path"],
+    posterPath: json["poster_path"] ?? '',
+    backdropPath: json["backdrop_path"] ?? '',
   );
 
-  Map<String, dynamic> toJson() => 
-  {
+  Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
     "poster_path": posterPath,
@@ -150,18 +147,16 @@ class Genre
   final String name;
 
   Genre({
-      required this.id,
-      required this.name,
+    required this.id,
+    required this.name,
   });
 
-  factory Genre.fromJson(Map<String, dynamic> json) => 
-  Genre(
+  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
     id: json["id"],
     name: json["name"],
   );
 
-  Map<String, dynamic> toJson() => 
-  {
+  Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
   };
@@ -172,7 +167,7 @@ class ProductionCompany
   final int id;
   final String? logoPath;
   final String name;
-  final String originCountry;
+  final String? originCountry;
 
   ProductionCompany({
     required this.id,
@@ -181,8 +176,7 @@ class ProductionCompany
     required this.originCountry,
   });
 
-  factory ProductionCompany.fromJson(Map<String, dynamic> json) => 
-  ProductionCompany(
+  factory ProductionCompany.fromJson(Map<String, dynamic> json) => ProductionCompany(
     id: json["id"],
     logoPath: json["logo_path"],
     name: json["name"],
@@ -204,19 +198,16 @@ class ProductionCountry
   final String name;
 
   ProductionCountry({
-      required this.iso31661,
-      required this.name,
+    required this.iso31661,
+    required this.name,
   });
 
-
-  factory ProductionCountry.fromJson(Map<String, dynamic> json) => 
-  ProductionCountry(
+  factory ProductionCountry.fromJson(Map<String, dynamic> json) => ProductionCountry(
     iso31661: json["iso_3166_1"],
     name: json["name"],
   );
 
-  Map<String, dynamic> toJson() => 
-  {
+  Map<String, dynamic> toJson() => {
     "iso_3166_1": iso31661,
     "name": name,
   };
@@ -234,15 +225,13 @@ class SpokenLanguage
     required this.name,
   });
 
-  factory SpokenLanguage.fromJson(Map<String, dynamic> json) => 
-  SpokenLanguage(
+  factory SpokenLanguage.fromJson(Map<String, dynamic> json) => SpokenLanguage(
     englishName: json["english_name"],
     iso6391: json["iso_639_1"],
     name: json["name"],
   );
 
-  Map<String, dynamic> toJson() => 
-  {
+  Map<String, dynamic> toJson() => {
     "english_name": englishName,
     "iso_639_1": iso6391,
     "name": name,

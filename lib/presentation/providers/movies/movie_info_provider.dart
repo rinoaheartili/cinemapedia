@@ -28,11 +28,11 @@ class MovieMapNotifier extends StateNotifier<Map<String,Movie>>
   }): super({});
 
 
-  Future<void> loadMovie( String movieId ) async 
+  Future<void> loadMovie(String movieId) async 
   {
-    if ( state[movieId] != null ) return;
-    final movie = await getMovie( movieId );
-    state = { ...state, movieId: movie };
+    if(state[movieId] != null) return;
+    final movie = await getMovie(movieId);
+    state = {...state, movieId: movie};
   }
 
 }

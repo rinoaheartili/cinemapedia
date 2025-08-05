@@ -52,7 +52,7 @@ class MoviesNotifier extends StateNotifier<List<Movie>>
     isLoading = true;
 
     currentPage++;
-    final List<Movie> movies = await fetchMoreMovies( page: currentPage );
+    final List<Movie> movies = await fetchMoreMovies(page: currentPage);
     state = [...state, ...movies];
 
     await Future.delayed(const Duration(milliseconds: 300));
